@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $ctx = new ZMQContext();
 $work = $ctx->getSocket(ZMQ::SOCKET_PULL);
@@ -14,15 +14,15 @@ $poll = new ZMQPoll();
 $poll->add($work, ZMQ::POLL_IN);
 $read = $write = array();
 
-while(true) {
+while (true) {
     $events = $poll->poll($read, $write, 5000);
-    if($events) {
+    if ($events) {
         $message = $work->recv();
         $sink->send(strlen($message));
     } else {
-        if($ctrl->recv(ZMQ::MODE_NOBLOCK)) {
+        if ($ctrl->recv(ZMQ::MODE_NOBLOCK)) {
             echo "Got END";
             exit();
         }
-    }    
+    }
 }

@@ -8,11 +8,11 @@ $in->bind("ipc:///tmp/logger");
 $out->connect("tcp://localhost:5555");
 
 $messages = array();
-while(true) {
+while (true) {
    $message = $in->recv();
    echo "Received Log", PHP_EOL;
    $messages[] = $message;
-   if(count($messages) == $bufferSize) {
+   if (count($messages) == $bufferSize) {
        echo "Forwarding Buffer", PHP_EOL;
        $out->sendMulti($messages);
        $messages = array();

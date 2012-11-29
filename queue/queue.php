@@ -11,13 +11,13 @@ $poll->add($frontend, ZMQ::POLL_IN);
 $poll->add($backend, ZMQ::POLL_IN);
 $readable = $writeable = array();
 
-while(true) {
+while (true) {
     $events = $poll->poll($readable, $writeable);
-    foreach($readable as $socket) {
-        if($socket === $frontend) {
+    foreach ($readable as $socket) {
+        if ($socket === $frontend) {
             $messages = $frontend->recvMulti();
             $backend->sendMulti($messages);
-        } else if($socket === $backend) {
+        } elseif ($socket === $backend) {
             $messages = $backend->recvMulti();
             $frontend->sendMulti($messages);
         }

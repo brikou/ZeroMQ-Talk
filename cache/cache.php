@@ -6,7 +6,7 @@ $socket->connect("ipc:///tmp/usercache");
 $socket->connect("ipc:///tmp/datacache");
 $type = array('users', 'data');
 
-while(true) {
+while (true) {
     $socket->send($type[array_rand($type)], ZMQ::MODE_SNDMORE);
     $socket->send(rand(0, 12));
     sleep(rand(0,3));

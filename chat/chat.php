@@ -11,9 +11,9 @@ $readable = $writeable = array();
 echo str_repeat("<span></span>", 100);
 ob_flush();
 flush();
-while(true) {
+while (true) {
     $events = $poll->poll($readable, $writeable, 5000000);
-    if($events > 0) {
+    if ($events > 0) {
         echo "\n\n<script type='text/javascript'>parent.updateChat('" . str_replace("'", "\'", $sub->recv()) ."');</script>\n\n";
     } else {
         echo ".";

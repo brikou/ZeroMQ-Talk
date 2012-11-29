@@ -12,12 +12,12 @@ $poll->add($results, ZMQ::POLL_IN);
 
 $read = $write = array();
 $total = 0;
-while(true) {
+while (true) {
     $ev = $poll->poll($read, $write, 100000);
-    if($ev) {
+    if ($ev) {
         $total += $results->recv();
     } else {
-        if($ctrl->recv(ZMQ::MODE_NOBLOCK)) {
+        if ($ctrl->recv(ZMQ::MODE_NOBLOCK)) {
             echo $total, PHP_EOL;
             exit();
         }

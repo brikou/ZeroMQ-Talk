@@ -2,9 +2,9 @@
 define("NUM_WORKERS", 10);
 
 // Start workers
-for($i = 0; $i < NUM_WORKERS; $i++) {
+for ($i = 0; $i < NUM_WORKERS; $i++) {
     echo "Starting Worker $i\n";
-    if(pcntl_fork() == 0) {
+    if (pcntl_fork() == 0) {
         `php work.php`;
         exit;
     }
@@ -22,10 +22,10 @@ sleep(1);
 
 $fh = fopen('data.txt', 'r');
 
-while($data = fgets($fh)) {
+while ($data = fgets($fh)) {
     $work->send($data);
 }
 
-for($i = 0; $i < NUM_WORKERS+1; $i++) {
+for ($i = 0; $i < NUM_WORKERS+1; $i++) {
     $ctrl->send("END");
 }

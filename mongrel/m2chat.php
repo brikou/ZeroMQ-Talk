@@ -19,14 +19,14 @@ $http_head =  "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nTransfer-Encoding: 
 
 while (true) {
     $ev = $poll->poll($read, $write);
-    foreach($read as $r) {
-        if($r === $sub) {
+    foreach ($read as $r) {
+        if ($r === $sub) {
             $msg = "<script type='text/javascript'>parent.updateChat('" . str_replace("'", "\'", $sub->recv()) . "');</script>\r\n";
             $conn->send($sender, implode(' ', $ids), sprintf("%x\r\n%s", strlen($msg) , $msg));
         } else {
             $req = $conn->recv();
             $sender = $req->sender;
-            if($req->is_disconnect()) {
+            if ($req->is_disconnect()) {
                 unset($ids[$req->conn_id]);
             } else {
                 $ids[$req->conn_id] = $req->conn_id;
