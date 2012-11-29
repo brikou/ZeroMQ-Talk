@@ -1,10 +1,10 @@
 <?php
 
-$ctx = new ZMQContext();
-$in = $ctx->getSocket(ZMQ::SOCKET_PULL);
+$context = new ZMQContext();
+$in = $context->getSocket(ZMQ::SOCKET_PULL);
 $in->connect('tcp://localhost:9997');
 
-$out = $ctx->getSocket(ZMQ::SOCKET_PUB);
+$out = $context->getSocket(ZMQ::SOCKET_PUB);
 $out->connect('tcp://localhost:9996');
 
 $http = "HTTP/1.1 200 OK\r\nContent-Length: %s\r\n\r\n%s";

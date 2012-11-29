@@ -6,8 +6,8 @@ require 'm2tools.php';
 $sender_id = "82209006-86FF-4982-B5EA-D1E29E55D481";
 
 $conn = new  \m2php\Connection($sender_id, "tcp://127.0.0.1:9997", "tcp://127.0.0.1:9996");
-$ctx = new \ZMQContext();
-$sub = new \ZMQSocket($ctx, \ZMQ::SOCKET_SUB);
+$context = new \ZMQContext();
+$sub = new \ZMQSocket($context, \ZMQ::SOCKET_SUB);
 $sub->setSockOpt(\ZMQ::SOCKOPT_SUBSCRIBE, '');
 $sub->connect('tcp://localhost:5566');
 $poll = new \ZMQPoll();

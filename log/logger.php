@@ -1,7 +1,7 @@
 <?php
 
-$ctx = new ZMQContext();
-$out = $ctx->getSocket(ZMQ::SOCKET_PUSH);
+$context = new ZMQContext();
+$out = $context->getSocket(ZMQ::SOCKET_PUSH);
 $out->connect("ipc:///tmp/logger");
 $msg = array("time" => time());
 $msg['msg'] = $_SERVER['argv'][1];

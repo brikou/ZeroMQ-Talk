@@ -1,9 +1,9 @@
 <?php
 
 $bufferSize = $_SERVER['argc'] > 1 ? $_SERVER['argv'][1] : 3;
-$ctx = new ZMQContext();
-$in = $ctx->getSocket(ZMQ::SOCKET_PULL);
-$out = $ctx->getSocket(ZMQ::SOCKET_PUSH);
+$context = new ZMQContext();
+$in = $context->getSocket(ZMQ::SOCKET_PULL);
+$out = $context->getSocket(ZMQ::SOCKET_PUSH);
 $in->bind("ipc:///tmp/logger");
 $out->connect("tcp://localhost:5555");
 

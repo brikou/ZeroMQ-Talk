@@ -1,7 +1,7 @@
 <?php
 
-$ctx = new ZMQContext();
-$in = $ctx->getSocket(ZMQ::SOCKET_PULL);
+$context = new ZMQContext();
+$in = $context->getSocket(ZMQ::SOCKET_PULL);
 $in->bind("tcp://*:5555");
 
 while (true) {

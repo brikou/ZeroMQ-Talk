@@ -1,9 +1,9 @@
 <?php
 
-$ctx = new ZMQContext();
-$pub = $ctx->getSocket(ZMQ::SOCKET_PUB);
+$context = new ZMQContext();
+$pub = $context->getSocket(ZMQ::SOCKET_PUB);
 $pub->bind('tcp://*:5566');
-$pull = $ctx->getSocket(ZMQ::SOCKET_PULL);
+$pull = $context->getSocket(ZMQ::SOCKET_PULL);
 $pull->bind('tcp://*:5567');
 
 while (true) {
