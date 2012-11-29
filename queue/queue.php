@@ -1,14 +1,19 @@
 <?php
 
 $context = new ZMQContext();
+
+// socket clients
 $frontend = new ZMQSocket($context, ZMQ::SOCKET_XREP);
+$frontend->bind("tcp://*:5454");
+
+// socket workers
 $backend = new ZMQSocket($context, ZMQ::SOCKET_XREQ);
-$frontend->bind('tcp://*:5454');
-$backend->bind('tcp://*:5455');
+$backend->bind("tcp://*:5455");
 
 $poll = new ZMQPoll();
 $poll->add($frontend, ZMQ::POLL_IN);
 $poll->add($backend, ZMQ::POLL_IN);
+
 $readable = $writeable = array();
 
 while (true) {
