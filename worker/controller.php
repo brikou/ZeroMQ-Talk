@@ -1,4 +1,5 @@
 <?php
+
 define("NUM_WORKERS", 10);
 
 // Start workers
@@ -11,6 +12,7 @@ for ($i = 0; $i < NUM_WORKERS; $i++) {
 }
 
 $context = new ZMQContext();
+
 $work = new ZMQSocket($context, ZMQ::SOCKET_PUSH);
 $ctrl = new ZMQSocket($context, ZMQ::SOCKET_PUSH);
 $work->setSockOpt(ZMQ::SOCKOPT_HWM, NUM_WORKERS);
@@ -26,6 +28,6 @@ while ($data = fgets($fh)) {
     $work->send($data);
 }
 
-for ($i = 0; $i < NUM_WORKERS+1; $i++) {
+for ($i = 0; $i < NUM_WORKERS + 1; $i++) {
     $ctrl->send("END");
 }

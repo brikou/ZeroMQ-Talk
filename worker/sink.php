@@ -1,8 +1,10 @@
 <?php
 
 $context = new ZMQContext();
+
 $results = $context->getSocket(ZMQ::SOCKET_PULL);
 $results->bind("ipc:///tmp/results");
+
 $ctrl = $context->getSocket(ZMQ::SOCKET_PULL);
 $ctrl->setSockOpt(ZMQ::SOCKOPT_HWM, 1);
 $ctrl->connect("ipc:///tmp/control");

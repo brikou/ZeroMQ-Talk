@@ -39,7 +39,7 @@
             }
 
         </style>
-        <script lang="text/javascript" src="jquery-1.2.6.pack.js"></script>
+        <script lang="text/javascript" src="./jquery-1.2.6.pack.js"></script>
         <script lang="text/javascript">
         function updateChat(response)
         {
@@ -56,11 +56,11 @@
                 $('#chat').css('display', 'block');
                 e.stopPropagation();
                 e.preventDefault();
-                $('body').append( '<iframe id="datasrc" src="chat.php?name=' + myname + '"></iframe>');
-                $.post('/chat/send.php', {'name': myname, 'message': 'm:joined'});
+                $('body').append( '<iframe id="datasrc" src="./chat.php?name=' + myname + '"></iframe>');
+                $.post('./send.php', {'name': myname, 'message': 'm:joined'});
             });
             $('#chatform').submit(function(e) {
-                $.post('/chat/send.php', {'name': myname, 'message': $('#chatbox').val()});
+                $.post('./send.php', {'name': myname, 'message': $('#chatbox').val()});
                 e.stopPropagation();
                 e.preventDefault();
                 $('#chatbox').val('');

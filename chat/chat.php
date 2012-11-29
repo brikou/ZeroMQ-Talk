@@ -1,6 +1,7 @@
 <?php
 
 $context = new ZMQContext();
+
 $sub = new ZMQSocket($context, ZMQ::SOCKET_SUB);
 $sub->setSockOpt(ZMQ::SOCKOPT_SUBSCRIBE, '');
 $sub->connect('tcp://localhost:5566');
